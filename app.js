@@ -14,6 +14,7 @@ getConfig().then(x => {
 });
 
 // Set up routes
+app.use(express.static('public'));
 require('./api')(app);
 
 

@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+}
+
+a {
+    color: #00897b;
+    text-decoration: none;
+}
+a:visited, a:hover {
+    color: #00564d;
+}
+
+.btn {
+    border: none;
+    box-shadow: none;
+    background: #00897b;
+    color: #fff !important;
+    display: inline-block;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem 1rem;
+}
+
+.chartContainer {
+    width: 100%;
+    height: 500px;
+}
+
+input {
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #00897b;
+    padding-bottom: 0.3rem;
+}
+
+input:focus {
+    outline: none;
+}
+
+.form-url {
+    width: 100%;
+}
+
+.form-submit {
+    margin-top: 1rem;
+}
+
+form.error .form-url {
+    color: red;
+}
+
+.error-message {
+    color: red;
+    font-weight: bolder;
+}
+
+.videoLink {
+    margin-bottom: 2rem;
+}

@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const {Storage} = require('@google-cloud/storage');
 
 // How long a message should be to be considered
-const MSG_LENGTH_THRESHOLD = 7;
+const MSG_LENGTH_THRESHOLD = 10;
 
 // The bucket to put chat logs in
 const BUCKET_NAME = 'htb7-chats';
@@ -29,6 +29,7 @@ const entireChatToFile = async function(client, videoId, videoLength) {
     // Next page loop
     let cursor = '';
     let end = false;
+    let written = 0; // Sentiment analysis has a cap of 1000000 bytes, so we need to not exceed that
     while (!end) {
         // Undocumented API for video chats.
         // This could change at any time though.
@@ -52,7 +53,13 @@ const entireChatToFile = async function(client, videoId, videoLength) {
 
             // Processing so NLP counts it as one sentence.
             const body = x.content_offset_seconds + ": " + x.message.body.replace(/[.!?]/g, ",") + ". \n";
+            if (written + body.length > 1000000) {
+                end = true;
+                break;
+            }
+
             stream.write(body);
+            written += body.length;
         }
 
         cursor = chats._next;

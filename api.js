@@ -28,7 +28,7 @@ const chatByMinute = async (req, res) => {
                 };
             }
 
-            minuteData[minute].sum += msg.sentiment.magnitude;
+            minuteData[minute].sum += (msg.sentiment.magnitude * msg.sentiment.score);
             minuteData[minute].count++;
         }
 

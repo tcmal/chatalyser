@@ -6,10 +6,10 @@ const GCP_PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
 
 const getConfig = async function() {
     const [twitchClientId] = await client.accessSecretVersion({
-        name: "projects/${GCP_PROJECT}/secrets/twitch_client_id/versions/latest"
+        name: "projects/" + GCP_PROJECT + "/secrets/twitch_client_id/versions/latest"
     });
     const [twitchClientSecret] = await client.accessSecretVersion({
-        name: "projects/${GCP_PROJECT}/secrets/twitch_client_secret/versions/latest"
+        name: "projects/" + GCP_PROJECT + "/secrets/twitch_client_secret/versions/latest"
     });
     return {
         twitchClientId: twitchClientId.payload.data.toString('utf8'),
